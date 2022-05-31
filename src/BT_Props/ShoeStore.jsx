@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import data from "./data.json";
-import Modal from "./Modal";
 import ProductList from "./ProductList";
+import Modal from "./Modal";
 
 export default class ShoeShop extends Component {
   constructor(props) {
@@ -12,12 +12,16 @@ export default class ShoeShop extends Component {
     };
   }
 
+  handleDetail = (product) => {
+    this.setState({ productDetail: product });
+  };
+
   render() {
     return (
       <div className="container">
         <h1 className="text-center">Shoes Shop</h1>
-        <ProductList products={data} />
-        <Modal product={this.state.selectedProduct} />
+        <ProductList products={data} onDetailClick={this.handleDetail} />
+        <Modal product={this.state.productDetail} />
       </div>
     );
   }
